@@ -1,5 +1,4 @@
-//now fetching from backend
-/*const products = [
+const products = [
   {
     _id: '1',
     name: 'New Found Glory Flash Sheet',
@@ -79,6 +78,6 @@
     numReviews: 12,
   },
 ]
-
+//old JS export statement repla ed by modules through type:modules in the package.json for the server
+//module.exports = products
 export default products
-*/

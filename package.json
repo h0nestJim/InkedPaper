@@ -1,0 +1,30 @@
+{
+  "name": "inked-paper-prototype",
+  "version": "1.0.0",
+  "description": "Shopping application",
+  "main": "server.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node backend/server",
+    "server": "nodemon backend/server",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/h0nestJim/InkedPaper.git"
+  },
+  "author": "Jim Shaun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/h0nestJim/InkedPaper/issues"
+  },
+  "homepage": "https://github.com/h0nestJim/InkedPaper#readme",
+  "dependencies": {
+    "concurrently": "^5.3.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.7"
+  }
+}
