@@ -1,1 +1,38 @@
 
+
+main{
+    min-height: 80vh;
+}
+
+.logo{
+    max-width: 15vh;
+}
+
+footer{
+    background-color: #292b2c;
+    color:white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h1{
+    font-family: 'Miltonian Tattoo', cursive;
+    text-align:center;
+}
+
+.nav-link{
+  font-family: 'Montserrat', sans-serif;
+  color: white;
+}
+
+.nav-link:hover{
+    color:#F58500;
+}
+
+.icon-dark{
+color:#B2B2B2;
+font-size:24px;
+}
+
+.icon-dark:hover{
+color:#F58500;
+}
