@@ -1,20 +1,21 @@
 import React, { useEffect } from 'react'
 import { Row, Col } from 'react-bootstrap'
-import Product from '../Components/Product'
+import Artist from '../Components/Artist'
 //replaced by redux
 //import axios from 'axios'
 import { useDispatch, useSelector } from 'react-redux'
-import { listProducts } from '../actions/productActions'
+import { listArtists } from '../actions/artistActions'
 
-const HomeScreens = () => {
+const ArtistScreen = () => {
     //const [products, setProducts] = useState([])
     const dispatch = useDispatch()
-    const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const artistList = useSelector(state => state.artistList)
+    console.log(artistList)
+    const { loading, error, artists } = artistList
 
     useEffect(() => {
 
-        dispatch(listProducts())
+        dispatch(listArtists())
 
         /* const fetchProducts = async () => {
              const { data } = await axios.get('/api/products')
@@ -28,11 +29,11 @@ const HomeScreens = () => {
 
     return (
         <>
-            <h1 className="py-3">Latest Products</h1>
+            <h1 className="py-3">Artists</h1>
             {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : <Row>
-                {products.map(product => (
+                {artists.map(artist => (
                     <Col sm={12} md={6} lg={4}>
-                        <Product product={product} />
+                        <Artist artist={artist} />
                     </Col>
                 ))}
 
@@ -42,4 +43,4 @@ const HomeScreens = () => {
     )
 }
 
-export default HomeScreens
+export default ArtistScreen

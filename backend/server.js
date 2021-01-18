@@ -12,7 +12,7 @@ import dbconnect from './config/db.js'
 
 //routes
 import productRoutes from './routes/productRoutes.js'
-
+import artistRoutes from './routes/artistRoutes.js'
 
 
 
@@ -24,6 +24,7 @@ const PORT = process.env.PORT || 5000
 
 
 app.use('/api/products', productRoutes)
+app.use('/api/artists', artistRoutes)
 
 
 

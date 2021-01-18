@@ -5,7 +5,7 @@ main{
 }
 
 .logo{
-    max-width: 15vh;
+    max-height: 20vh;
 }
 
 footer{
@@ -17,6 +17,11 @@ footer{
 h1{
     font-family: 'Miltonian Tattoo', cursive;
     text-align:center;
+}
+
+h2{
+    font-family: 'Montserrat', sans-serif;
+    color:#292b2c;
 }
 
 .nav-link{
@@ -35,4 +40,50 @@ font-size:24px;
 
 .icon-dark:hover{
 color:#F58500;
+}
+
+
+
+.carousel-h{
+    color:#292b2c;
+    font-family: 'Miltonian Tattoo', cursive;
+    text-align:center;
+    font-size:large;
+    padding: 3;
+    margin-top:3;
+}
+
+.carousel-p{
+    
+    color:#292b2c;
+    font-family: 'Montserrat', sans-serif;
+    font-size: small;
+}
+
+.home-caption{
+    background-color:white;
+    top: 50%;
+    transform: translateY(-50%);
+    min-height:16vh;
+    max-height:18vh;
+    max-width:80%;
+    background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
+    background: rgba(255, 255, 255, 0.85);
+}
+
+p{
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+.large-image{
+    width:80vw;
+    display:block;
+    margin:auto;
+}
+
+.btn-center{
+   
+    margin:auto;
+    display:block;
 }

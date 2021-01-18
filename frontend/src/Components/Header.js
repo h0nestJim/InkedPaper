@@ -11,21 +11,21 @@ const Header = () => {
                     <Nav.Link><Navbar.Toggle aria-controls="basic-navbar-nav" /></Nav.Link>
 
                     <LinkContainer to="/">
-                    <Navbar.Brand><img className='logo' src={logoMain} alt="logo" /></Navbar.Brand>
+                    <Navbar.Brand ><img className='logo' src={logoMain} alt="logo" /></Navbar.Brand>
                     </LinkContainer>
                     
 
-
+                    
 
                     <LinkContainer to="/cart">
                     <Nav.Link> <span class="material-icons icon-dark">
                         shopping_cart
                         </span></Nav.Link>
                     </LinkContainer>
-                    
+                    </Container>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Navbar bg="dark" className="nav-fill w-100" >
-                            <LinkContainer to="/">
+                        <Navbar bg="dark" className="nav-fill w-100 min-ch-100" >
+                            <LinkContainer to="/store">
                                 <Nav.Link>Shop</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/artists">
@@ -49,7 +49,7 @@ const Header = () => {
                         </Container>
 
                     </Navbar.Collapse>
-                </Container>
+                
             </Navbar>
         </header >
     )
