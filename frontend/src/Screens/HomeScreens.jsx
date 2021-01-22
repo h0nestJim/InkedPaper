@@ -6,7 +6,7 @@ import Product from '../Components/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
 
-const HomeScreens = () => {
+const HomeScreens = (location, history) => {
     //const [products, setProducts] = useState([])
     const dispatch = useDispatch()
     const productList = useSelector(state => state.productList)

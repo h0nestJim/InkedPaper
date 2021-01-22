@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import framedflash from '../images/framedflash.jpg'
 
-const About = () => {
+const About = (location, history) => {
     return (
         <div>
             <h1 className="py-3">Our Mission</h1>

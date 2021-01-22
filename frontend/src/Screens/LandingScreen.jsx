@@ -4,7 +4,7 @@ import { Container, Carousel, Row, Col } from 'react-bootstrap'
 import banner from '../images/flashbanner.jpg'
 import banneralt from '../images/flashbanneralt.jpg'
 
-const LandingScreen = () => {
+const LandingScreen = (location, history) => {
     return (
         <div>
 

@@ -13,10 +13,13 @@ import dbconnect from './config/db.js'
 //routes
 import productRoutes from './routes/productRoutes.js'
 import artistRoutes from './routes/artistRoutes.js'
+import userRoutes from './routes/userRoutes.js'
 
 
 
 const app = express()
+app.use(express.json())
+
 dotenv.config()
 dbconnect()
 
@@ -25,6 +28,7 @@ const PORT = process.env.PORT || 5000
 
 app.use('/api/products', productRoutes)
 app.use('/api/artists', artistRoutes)
+app.use('/api/users', userRoutes)
 
 
 

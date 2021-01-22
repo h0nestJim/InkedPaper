@@ -24,6 +24,11 @@ h2{
     color:#292b2c;
 }
 
+h3{
+    font-family: 'Montserrat', sans-serif;
+    color:#292b2c;
+}
+
 .nav-link{
   font-family: 'Montserrat', sans-serif;
   color: white;
@@ -86,4 +91,10 @@ p{
    
     margin:auto;
     display:block;
+}
+
+.message-alert{
+    font-family: 'Montserrat', sans-serif;
+    color:red;
+    font-weight:bold;
 }

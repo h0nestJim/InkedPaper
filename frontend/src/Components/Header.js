@@ -1,9 +1,22 @@
 import React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
-import { Navbar, Nav, Container, Form, FormControl, Button } from 'react-bootstrap';
+import { Navbar, Nav, Container, Form, FormControl, Button, NavDropdown} from 'react-bootstrap';
 import logoMain from '../images/logo_main.png';
+import {useDispatch, useSelector} from 'react-redux'
+import {logout} from '../actions/userActions'
+
 
 const Header = () => {
+
+    const dispatch = useDispatch()
+
+    const userLogin = useSelector(state => state.userLogin)
+    const {userInfo} = userLogin
+
+    const logoutHandler = ()=>{
+        dispatch(logout())
+    }
+
     return (
         <header>
             <Navbar className="nav-fill w-100" bg="light" expand="x">
@@ -31,9 +44,24 @@ const Header = () => {
                             <LinkContainer to="/artists">
                                 <Nav.Link>Artists</Nav.Link>
                             </LinkContainer>
+
+                            {userInfo ? (
+                                <NavDropdown title ={userInfo.name} id="username">
+                                    <LinkContainer to="/profile">
+                                        <NavDropdown.Item>My Account</NavDropdown.Item>
+                                    </LinkContainer>
+                                    <NavDropdown.Item onClick={logoutHandler}>Log Out</NavDropdown.Item>
+                                </NavDropdown>
+                            )
+                            :
                             <LinkContainer to="/login">
                                 <Nav.Link>My Account</Nav.Link>
                             </LinkContainer>
+                            }
+                            
+
+
+
                             <LinkContainer to="/about">
                                 <Nav.Link>About</Nav.Link>
                             </LinkContainer>
