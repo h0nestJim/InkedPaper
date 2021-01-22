@@ -98,3 +98,9 @@ p{
     color:red;
     font-weight:bold;
 }
+
+.message-alert-success{
+    font-family: 'Montserrat', sans-serif;
+    color:green;
+    font-weight:bold;
+}

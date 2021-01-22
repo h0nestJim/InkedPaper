@@ -1,9 +1,11 @@
 import React from 'react'
 import {LinkContainer} from 'react-router-bootstrap'
-import { Navbar, Nav, Container, Form, FormControl, Button, NavDropdown} from 'react-bootstrap';
+import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import logoMain from '../images/logo_main.png';
 import {useDispatch, useSelector} from 'react-redux'
 import {logout} from '../actions/userActions'
+import Search from './Search'
+import {Route} from 'react-router-dom'
 
 
 const Header = () => {
@@ -37,7 +39,7 @@ const Header = () => {
                     </LinkContainer>
                     </Container>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Navbar bg="dark" className="nav-fill w-100 min-ch-100" >
+                        <Navbar bg="dark" className="nav-fill w-100 min-ch-100 m-0" >
                             <LinkContainer to="/store">
                                 <Nav.Link>Shop</Nav.Link>
                             </LinkContainer>
@@ -70,10 +72,12 @@ const Header = () => {
 
                     <Navbar.Collapse id="nav-bar-search" className="mr-auto">
                         <Container>
-                            <Form inline className="py-2">
-                                <FormControl type="text" placeholder="Search" className="mr-sm-2 mr-auto" />
-                                <Button variant="outline-warning rounded">Search</Button>
-                            </Form>
+                           
+                           
+                            <Route render={({history})=><Search history={history}></Search> }/>
+
+
+
                         </Container>
 
                     </Navbar.Collapse>

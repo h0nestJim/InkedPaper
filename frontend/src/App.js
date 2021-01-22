@@ -11,6 +11,7 @@ import ArtistScreen from './Screens/ArtistScreen'
 import CartScreen from './Screens/CartScreen'
 import LoginScreen from './Screens/LoginScreen'
 import RegisterScreen from './Screens/RegisterScreen'
+import ProfileScreen from './Screens/ProfileScreen'
 
 const App = () => {
   return (
@@ -27,6 +28,8 @@ const App = () => {
           <Route path='/cart/:id?' component={CartScreen} />
           <Route path='/login' component={LoginScreen} />
           <Route path='/register' component={RegisterScreen} />
+          <Route path='/profile' component={ProfileScreen} />
+          <Route path='/search/:keyword' component={HomeScreen} exact/>
         </Container>
       </main>
       <Footer />

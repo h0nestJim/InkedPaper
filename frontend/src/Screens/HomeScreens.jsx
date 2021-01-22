@@ -6,15 +6,22 @@ import Product from '../Components/Product'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProducts } from '../actions/productActions'
 
-const HomeScreens = (location, history) => {
+const HomeScreens = ({ location, history, match }) => {
     //const [products, setProducts] = useState([])
+
+
+    //for search bar
+    const keyword = match.params.keyword
+
+
     const dispatch = useDispatch()
+
     const productList = useSelector(state => state.productList)
     const { loading, error, products } = productList
 
     useEffect(() => {
 
-        dispatch(listProducts())
+        dispatch(listProducts(keyword))
 
         /* const fetchProducts = async () => {
              const { data } = await axios.get('/api/products')
@@ -23,7 +30,7 @@ const HomeScreens = (location, history) => {
  
          fetchProducts()
          */
-    }, [dispatch])
+    }, [dispatch, keyword])
 
 
     return (
