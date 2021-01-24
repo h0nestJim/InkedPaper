@@ -119,4 +119,71 @@ const updateUserProfile = asyncHandler(async (req, res) =>{
 })
 
 
-export {registerUser, getUserProfile, authUser, updateUserProfile}
+
+//ADMIN ONLY
+
+const getUsers = asyncHandler(async (req, res) =>{
+
+   const users = await User.find({})
+   res.json(users)
+})
+
+
+const deleteUser = asyncHandler(async (req, res) =>{
+
+   const user = await User.findById(req.params.id)
+   if (user){
+        await user.remove()
+        res.json({message: 'User removed!'})
+   }
+   else{
+       res.status(404)
+       throw new error('User not found!')
+   }
+})
+
+
+const getUserById = asyncHandler(async (req, res) =>{
+
+   const user = await User.findById(req.params.id).select('-password')
+
+    if (user){
+        res.json(user)
+    }
+    else{
+        throw new Error('User not found!')
+    }
+   
+})
+
+
+//UPDATE Specific User
+const updateUser = asyncHandler(async (req, res) =>{
+
+   const user = await User.findById(req.params.id)
+
+   if (user){
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin
+    
+
+    const updatedUser = await user.save()
+
+    res.json({
+        _id: updatedUser._id,
+        name: updatedUser.name,
+        email: updatedUser.email,
+        isAdmin: updatedUser.isAdmin,
+     })
+
+   }
+   else{
+       res.status(404)
+       throw new Error('User Account Not Found!')
+   }
+
+})
+
+export {registerUser, getUserProfile, authUser, updateUserProfile, getUsers, deleteUser, getUserById, updateUser}
+
