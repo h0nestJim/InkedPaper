@@ -36,7 +36,7 @@ const UserListScreen = ({ history }) => {
 
     return (
         <>
-            <h1 className="py-3">System Users</h1>
+            <h1 className="py-3">System User Dashboard</h1>
             {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3>
                 :
                 (<Table striped bordered hover responsive className="table-sm">

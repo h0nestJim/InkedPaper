@@ -42,7 +42,7 @@ const ProductScreen = ({ history, match }) => {
 
     return (
         <div>
-            <Link className='btn btn-outline-warning my-3 rounded' to='/'>Back to Shop</Link>
+            <Link className='btn btn-outline-warning my-3 rounded' to='/store'>Back to Shop</Link>
             {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : (
                 <Row>
                     <Col md={6}>

@@ -92,12 +92,14 @@ const CartScreen = ({ match, location, history }) => {
 
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Button
-                                type="button"
-                                className="btn-block btn-warning"
-                                disabled={cart.cartItems.length === 0}
-                                onClick={checkOutHandler}
-                            >Proceed to Checkout!</Button>
+                            <Link to="/checkout">
+                                <Button
+                                    type="button"
+                                    className="btn-block btn-warning"
+                                    disabled={cart.cartItems.length === 0}
+                                    onClick={checkOutHandler}
+                                >Proceed to Checkout!</Button>
+                            </Link>
                         </ListGroupItem>
                     </ListGroup>
                 </Card>
