@@ -32,6 +32,11 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.12",
     "multer": "^1.4.2",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "webpack-manifest-plugin": "^3.0.0",
+    "workbox-cli": "^6.0.2"
+  },
+  "devDependencies": {
+    "workbox-webpack-plugin": "^6.0.2"
   }
 }
