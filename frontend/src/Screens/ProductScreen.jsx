@@ -10,11 +10,6 @@ import { listProductDetails } from '../actions/productActions'
 
 const ProductScreen = ({ history, match }) => {
     const [qty, setQty] = useState(1)
-    //replaced by backend
-    //const product = products.find((p) => p._id === match.params.id);
-
-    //replaced by redux
-    //const [product, setProduct] = useState({})
 
     const dispatch = useDispatch()
     const productDetails = useSelector(state => state.productDetails)
@@ -24,13 +19,6 @@ const ProductScreen = ({ history, match }) => {
 
         dispatch(listProductDetails(match.params.id))
 
-        /*const fetchProduct = async () => {
-            const { data } = await axios.get(`/api/products/${match.params.id}`)
-            setProduct(data)
-        }
-
-        fetchProduct()
-        */
     }, [dispatch, match.params])
 
 

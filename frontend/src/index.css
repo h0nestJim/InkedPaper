@@ -6,6 +6,7 @@ main{
 
 .logo{
     max-height: 20vh;
+    max-width:200px;
 }
 
 footer{
@@ -34,12 +35,22 @@ h3{
   color: white;
 }
 
+.progress-link{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: #F58500;
+}
+
+.checkout-bar{
+    height: 3vh;
+}
+
 .nav-link:hover{
     color:#F58500;
 }
 
 .icon-dark{
-color:#B2B2B2;
+color:#0e0d0d;
 font-size:24px;
 }
 

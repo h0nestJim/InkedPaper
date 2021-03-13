@@ -1,6 +1,11 @@
 import express from 'express'
 const router = express.Router()
-import { getProducts, getProductById, deleteProduct, createProduct, updateProduct } from '../controllers/productController.js'
+import { getProducts, 
+    getProductById, 
+    deleteProduct, 
+    createProduct, 
+    updateProduct
+ } from '../controllers/productController.js'
 import {protect, adminCheck} from '../middleware/authMiddleware.js'
 
 //get all products from backend

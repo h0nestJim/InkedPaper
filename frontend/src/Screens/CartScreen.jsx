@@ -39,46 +39,46 @@ const CartScreen = ({ match, location, history }) => {
                 <h1 className="py-3">Your Basket</h1>
                 {cart.cartItems.length === 0 ? (<h2>Your basket is empty!<Link className=" btn btn-warning rounded mx-3" to="/store">Back to Shop?</Link></h2>
                 ) : (
-                        <ListGroup variant="flush">
-                            {cart.cartItems.map(item => (
-                                <ListGroupItem key={item.product}>
-                                    <Row>
-                                        <Col md={2}>
-                                            <Image src={item.image} alt={item.name} fluid rounded />
-                                        </Col>
-                                        <Col md={3}>
-                                            <h3><Link to={`/product/${item.product}`}>{item.name}</Link></h3>
-                                        </Col>
-                                        <Col md={2}>
-                                            <p>£{item.price}</p>
-                                        </Col>
-                                        <Col md={2}>
-                                            <Form.Control as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
-                                                {
-                                                    [...Array(item.stock).keys()].map(x => (
-                                                        <option key={x + 1} value={x + 1}> {x + 1}</option>
-                                                    ))
-                                                }
-                                            </Form.Control>
-                                        </Col>
-                                        <Col md={2}>
-                                            <Button type="button" variant='light' onClick={
-                                                () => removeFromCartHandler(item.product)
-                                            }><span class="material-icons icon-dark">
-                                                    delete
+                    <ListGroup variant="flush">
+                        {cart.cartItems.map(item => (
+                            <ListGroupItem key={item.product}>
+                                <Row>
+                                    <Col md={2}>
+                                        <Image src={item.image} alt={item.name} fluid rounded />
+                                    </Col>
+                                    <Col md={3}>
+                                        <h3><Link to={`/product/${item.product}`}>{item.name}</Link></h3>
+                                    </Col>
+                                    <Col md={2}>
+                                        <p>£{item.price}</p>
+                                    </Col>
+                                    <Col md={2}>
+                                        <Form.Control as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                            {
+                                                [...Array(item.stock).keys()].map(x => (
+                                                    <option key={x + 1} value={x + 1}> {x + 1}</option>
+                                                ))
+                                            }
+                                        </Form.Control>
+                                    </Col>
+                                    <Col md={2}>
+                                        <Button type="button" variant='light' onClick={
+                                            () => removeFromCartHandler(item.product)
+                                        }><span class="material-icons icon-dark">
+                                                delete
                                                 </span></Button>
-                                        </Col>
-                                    </Row>
-                                </ListGroupItem>
-
-                            ))}
-                            <ListGroupItem>
-                                <p>Not done? <Link className=" btn btn-outline-warning rounded mx-3" to="/store">Continue Shopping</Link></p>
+                                    </Col>
+                                </Row>
                             </ListGroupItem>
 
+                        ))}
+                        <ListGroupItem>
+                            <p>Not done? <Link className=" btn btn-outline-warning rounded mx-3" to="/store">Continue Shopping</Link></p>
+                        </ListGroupItem>
 
-                        </ListGroup>
-                    )
+
+                    </ListGroup>
+                )
 
 
                 }
@@ -92,14 +92,14 @@ const CartScreen = ({ match, location, history }) => {
 
                         </ListGroupItem>
                         <ListGroupItem>
-                            <Link to="/checkout">
-                                <Button
-                                    type="button"
-                                    className="btn-block btn-warning"
-                                    disabled={cart.cartItems.length === 0}
-                                    onClick={checkOutHandler}
-                                >Proceed to Checkout!</Button>
-                            </Link>
+
+                            <Button
+                                type="button"
+                                className="btn-block btn-warning"
+                                disabled={cart.cartItems.length === 0}
+                                onClick={checkOutHandler}
+                            >Proceed to Checkout!</Button>
+
                         </ListGroupItem>
                     </ListGroup>
                 </Card>

@@ -39,7 +39,7 @@ const Header = () => {
                     </LinkContainer>
                     </Container>
                     <Navbar.Collapse id="basic-navbar-nav">
-                        <Navbar bg="dark" className="nav-fill w-100 min-ch-100 m-0" >
+                        <Navbar bg="dark" className="nav-fill w-100 min-ch-100 m-0 p-0" >
                             <LinkContainer to="/store">
                                 <Nav.Link>Shop</Nav.Link>
                             </LinkContainer>
