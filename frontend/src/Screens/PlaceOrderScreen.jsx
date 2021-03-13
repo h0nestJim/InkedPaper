@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -100,48 +100,51 @@ const PlaceOrderScreen = ({ history }) => {
 
                     </ListGroup>
                 </Col>
-                <Col md={4}>
-                    <ListGroup variant='flush'>
-                        <ListGroupItem>
-                            <h2>Order Summary</h2>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Row>
-                                <Col>Items</Col>
-                                <Col>£{cart.itemsPrice}</Col>
-                            </Row>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Row>
-                                <Col>Shipping</Col>
-                                <Col>£{cart.shippingPrice}<p>All orders are sent in a tube with first class tracked postage</p></Col>
-                            </Row>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Row>
-                                <Col>Handling</Col>
-                                <Col>£{cart.handling}</Col>
-                            </Row>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <Row>
-                                <Col><strong>Total</strong></Col>
-                                <Col><h3>£{cart.totalPrice}</h3></Col>
-                            </Row>
-                        </ListGroupItem>
-                        <ListGroupItem>
-                            <ListGroupItem>
-                                {error && <Message variant='danger'>{error}</Message>}
-                            </ListGroupItem>
-                            <Button
-                                type='button'
-                                className='btn-block btn-warning'
-                                disabled={cart.cartItems === 0}
-                                onClick={placeOrderHandler}
-                            >Place Order</Button>
-                        </ListGroupItem>
 
-                    </ListGroup>
+                <Col md={4}>
+                    <Card>
+                        <ListGroup variant='flush'>
+                            <ListGroupItem>
+                                <h2>Order Summary</h2>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <Row>
+                                    <Col>Items</Col>
+                                    <Col>£{cart.itemsPrice}</Col>
+                                </Row>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <Row>
+                                    <Col>Shipping</Col>
+                                    <Col>£{cart.shippingPrice}<p>All orders are sent in a tube with first class tracked postage</p></Col>
+                                </Row>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <Row>
+                                    <Col>Handling</Col>
+                                    <Col>£{cart.handling}</Col>
+                                </Row>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <Row>
+                                    <Col><strong>Total</strong></Col>
+                                    <Col><h3>£{cart.totalPrice}</h3></Col>
+                                </Row>
+                            </ListGroupItem>
+                            <ListGroupItem>
+                                <ListGroupItem>
+                                    {error && <Message variant='danger'>{error}</Message>}
+                                </ListGroupItem>
+                                <Button
+                                    type='button'
+                                    className='btn-block btn-warning'
+                                    disabled={cart.cartItems === 0}
+                                    onClick={placeOrderHandler}
+                                >Place Order</Button>
+                            </ListGroupItem>
+
+                        </ListGroup>
+                    </Card>
                 </Col>
             </Row>
 

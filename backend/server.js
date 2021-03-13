@@ -32,6 +32,8 @@ app.use('/api/users', userRoutes)
 app.use('/api/upload', uploadRoutes)
 app.use('/api/orders', orderRoutes)
 
+app.get('/api/config/stripe', (req, res) =>{res.send(process.env.STRIPE_CLIENT_ID)})
+
 
 app.listen(PORT, console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`));
 

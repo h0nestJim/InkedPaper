@@ -30,10 +30,12 @@ const ProfileScreen = ({ location, history }) => {
 
     useEffect(() => {
         if (!userInfo) {
+
             history.push('/login')
         }
         else {
-            if (!user.name || success) {
+
+            if (!user || !user.name || success) {
                 dispatch({ type: USER_UPDATE_PROFILE_RESET })
                 dispatch(getUserDetails('profile'))
             } else {
@@ -41,6 +43,7 @@ const ProfileScreen = ({ location, history }) => {
                 setEmail(user.email)
             }
         }
+
     }, [dispatch, history, userInfo, user, success])
 
     const submitHandler = (e) => {
