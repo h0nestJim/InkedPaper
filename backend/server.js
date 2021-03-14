@@ -4,6 +4,10 @@ import dotenv from 'dotenv'
 import {notFound, errorHandler} from './middleware/errorMiddleware.js'
 import dbconnect from './config/db.js'
 import path from 'path'
+import stripe from 'stripe'
+
+
+
 
 //routes
 import productRoutes from './routes/productRoutes.js'
@@ -11,6 +15,7 @@ import artistRoutes from './routes/artistRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import orderRoutes from './routes/orderRoutes.js'
 import uploadRoutes from './routes/uploadRoutes.js'
+
 
 
 const app = express()
@@ -40,6 +45,11 @@ app.listen(PORT, console.log(`Server Running in ${process.env.NODE_ENV} mode on 
 app.get('/', (req, res)=>{
     res.send("Api is running...");
 });
+
+
+//TRY Stripe
+const stripeData = new stripe('sk_test_51IUavEFV3SCXvY9fJ1bhZnVp2634qcHKHjq3qWX7yddcUF6iOFzFuQSrsZz2k0m0404PXkthuuQta3KQQM18rsvL006Yff0nVV')
+console.log(stripeData)
 
 app.use(notFound)
 app.use(errorHandler)

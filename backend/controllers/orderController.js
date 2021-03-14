@@ -1,6 +1,6 @@
 import asyncHandler from 'express-async-handler'
 import Order from '../models/OrderModel.js'
-
+const stripe = 'sk_test_51IUavEFV3SCXvY9fJ1bhZnVp2634qcHKHjq3qWX7yddcUF6iOFzFuQSrsZz2k0m0404PXkthuuQta3KQQM18rsvL006Yff0nVV'
 
 const addOrderItems = asyncHandler(async (req, res) =>{
 
@@ -76,5 +76,12 @@ const updateOrderToPaid = asyncHandler(async (req, res) =>{
     }
 
 })
+
+
+
+    
+
+
+ 
 
 export {addOrderItems, getOrderById, updateOrderToPaid}

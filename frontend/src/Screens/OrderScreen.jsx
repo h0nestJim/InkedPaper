@@ -6,12 +6,16 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import { getOrderDetails } from '../actions/orderActions'
 import axios from 'axios'
+import StripeCheckout from 'react-stripe-checkout'
+import { loadStripe } from '@stripe/stripe-js'
+const stripePromise = loadStripe('pk_test_51IUavEFV3SCXvY9fubZHWbPtve3bWc9yFTuEM5Cx05OEblstUpwW67DwVEcYVMciTAFImsZeyshfX9MVQvGdftLQ00uES24w7o')
 
 const OrderScreen = ({ match }) => {
 
     const orderId = match.params.id
 
-    const [stripeReady, setStripeReady] = useState(false)
+    //const [stripeReady, setStripeReady] = useState(false)
+
 
     const dispatch = useDispatch()
 
@@ -35,8 +39,15 @@ const OrderScreen = ({ match }) => {
     }
 
 
-    useEffect(() => {
 
+    const handleClick = async (e) => {
+
+    }
+
+
+
+    useEffect(() => {
+        /*
         const addStripeScript = async () => {
             const { data: clientId } = await axios.get('/api/config/stripe')
 
@@ -60,6 +71,7 @@ const OrderScreen = ({ match }) => {
             }
         }
 
+*/
 
 
         if (!order || order._id !== orderId) {
@@ -99,7 +111,10 @@ const OrderScreen = ({ match }) => {
                             </br>
                             <br></br>
                             {order.isPaid ? <Message variant="success">Payment Succeded on: {order.paidAt}</Message> :
-                                <Message variant='danger'>Payment not yet Complete</Message>}
+                                <>
+                                    <Message variant='danger'>Payment not yet Complete</Message>
+                                    <Button role='link' onClick={handleClick}>Pay Now</Button>
+                                </>}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
