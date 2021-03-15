@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { getOrderDetails, payOrder } from '../actions/orderActions'
 import { useHistory, Redirect, Link } from "react-router-dom";
 import {
     CardElement,
@@ -11,6 +13,9 @@ import Field from "./Field";
 //css provided by stripe to format elements
 
 const axios = require("axios");
+
+
+
 
 //credit card element specific styling
 const CARD_OPTIONS = {
@@ -55,8 +60,12 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 );
 
 //component declaration
-export default function CreditCardForm(props) {
-
+export default function CreditCardForm(props, { match }) {
+    const dispatch = useDispatch()
+    const orderDetails = useSelector((state) => state.orderDetails)
+    const { order } = orderDetails
+    const cart = useSelector((state) => state.cart)
+    const { shippingAddress } = cart
     let history = useHistory();
 
     const stripe = useStripe();
@@ -66,13 +75,13 @@ export default function CreditCardForm(props) {
     const [cardComplete, setCardComplete] = useState(false);
     const [processing, setProcessing] = useState(false);
     const [paymentMethod, setPaymentMethod] = useState('');
-    const [price, setPrice] = useState(0);
+    const [price, setPrice] = useState(order.totalPrice);
     const [billingDetails, setBillingDetails] = useState({
-        email: '',
-        name: '',
+        email: order.user.email,
+        name: order.user.name,
         address: {
-            line1: '',
-            line2: '',
+            line1: `${shippingAddress.address}, ${shippingAddress.city}, ${shippingAddress.county}`,
+            line2: shippingAddress.postcode,
         }
     });
 
@@ -85,11 +94,10 @@ export default function CreditCardForm(props) {
         setSuccess(false);
         setCardComplete(false);
         setBillingDetails({
-            email: '',
-            name: '',
+            email: order.user.email,
+            name: order.user.name,
             address: {
-                line1: '',
-                line2: ''
+                line1: ''
             }
         });
     };
@@ -215,6 +223,9 @@ export default function CreditCardForm(props) {
                 */
 
                 setSuccess(true);
+
+                dispatch(payOrder(order._id, success))
+
             }
         }
     }
@@ -250,24 +261,27 @@ export default function CreditCardForm(props) {
                     Your card payment has been confirmed
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button className="btn" variant="success" onClick={() => { history.push("/placeorder") }}>Review Order</Button>
+                    <Button className="btn" variant="success" onClick={() => { history.go(0) }}>Review Order</Button>
 
                 </Modal.Footer>
             </Modal>
 
             {/* Bet amount field */}
             <Field
-                label="Donation Amount"
+                label="Amount to Pay"
                 id="bet"
-                type="number"
-                placeholder="0"
+
+                placeholder={Number(price)}
                 required
-                autoComplete="tel"
                 min="1"
+                read-only
                 value={price}
                 onChange={(event) => {
-                    if (event.target.value >= 0) {
-                        setPrice(event.target.value);
+                    if (event.target.value != price) {
+                        setPrice(price);
+                    }
+                    else {
+                        setPrice(price);
                     }
                 }}
             />
@@ -279,9 +293,10 @@ export default function CreditCardForm(props) {
                     label="Name"
                     id="name"
                     type="text"
-                    placeholder="n"
                     required
                     autoComplete="name"
+                    read-only
+                    disabled='disabled'
                     value={billingDetails.name}
                     onChange={(event) => {
                         setBillingDetails({ ...billingDetails, name: event.target.value });
@@ -305,9 +320,9 @@ export default function CreditCardForm(props) {
                     label="Billing Address"
                     id="line1"
                     type="address-line1"
-                    placeholder="1234 your street"
+
                     required
-                    autoComplete="address-line1"
+
                     value={billingDetails.address.line1}
                     onChange={(event) => {
                         setBillingDetails({

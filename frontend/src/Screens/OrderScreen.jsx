@@ -4,19 +4,19 @@ import { Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-b
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import { getOrderDetails } from '../actions/orderActions'
+import { getOrderDetails, payOrder } from '../actions/orderActions'
+
 import axios from 'axios'
 //stripe
 import { Elements } from "@stripe/react-stripe-js"
 import CreditCardForm from '../PaymentWidgets/CreditCardForm'
 import { loadStripe } from "@stripe/stripe-js"
+import { ORDER_PAY_RESET } from '../constants/orderConstants'
 
 const OrderScreen = ({ match }) => {
 
     const orderId = match.params.id
-
-    //const [stripeReady, setStripeReady] = useState(false)
-
+    const [stipePromise, setStripePromise] = useState(() => loadStripe("pk_test_51IUavEFV3SCXvY9fubZHWbPtve3bWc9yFTuEM5Cx05OEblstUpwW67DwVEcYVMciTAFImsZeyshfX9MVQvGdftLQ00uES24w7o|"))
 
     const dispatch = useDispatch()
 
@@ -48,36 +48,14 @@ const OrderScreen = ({ match }) => {
 
 
     useEffect(() => {
-        /*
-        const addStripeScript = async () => {
-            const { data: clientId } = await axios.get('/api/config/stripe')
-
-            const script = document.createElement('script')
-            script.type = 'text/javascript'
-            script.async = true
-            script.src = 'https://js.stripe.com/v3/'
-            script.onload = () => {
-                setStripeReady(true)
-            }
-            document.body.appendChild(script)
-        }
-
-        if (!order || successPay) {
-            dispatch(getOrderDetails(orderId))
-        } else if (!order.isPaid) {
-            if (!window.stripe) {
-                addStripeScript()
-            } else {
-                setStripeReady(true)
-            }
-        }
-
-*/
-
+        setStripePromise()
 
         if (!order || order._id !== orderId) {
+            dispatch({ type: ORDER_PAY_RESET })
             dispatch(getOrderDetails(orderId))
         }
+
+
 
     }, [dispatch, order, orderId])
 
@@ -100,8 +78,8 @@ const OrderScreen = ({ match }) => {
                             <strong>Address: </strong>
                             {order.shippingAddress.address}, {order.shippingAddress.city}, {order.shippingAddress.county}, {order.shippingAddress.postcode}, {order.shippingAddress.country}
                             <br></br><br></br>
-                            {order.isDelivered ? <Message variant="success">Delivered on: {order.deliveredAt}</Message> :
-                                <Message variant='danger'>Not Delivered</Message>}
+                            {order.isDelivered ? <Message variant="success">Dispatched on: {order.deliveredAt}</Message> :
+                                <Message variant='danger'>Not Yet Dispatched!</Message>}
                         </ListGroup.Item>
 
                         <ListGroup.Item>
@@ -157,7 +135,7 @@ const OrderScreen = ({ match }) => {
                                             <Elements
                                                 stripe={loadStripe("pk_test_51IUavEFV3SCXvY9fubZHWbPtve3bWc9yFTuEM5Cx05OEblstUpwW67DwVEcYVMciTAFImsZeyshfX9MVQvGdftLQ00uES24w7o")}
                                             >
-                                                <CreditCardForm />
+                                                <CreditCardForm order={order} />
                                             </Elements>
                                         </Card.Body>
                                     </Card>

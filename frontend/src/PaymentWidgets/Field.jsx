@@ -8,6 +8,7 @@ export default class Field extends React.Component {
                     {this.props.label}
                 </Form.Label>
                 <Form.Control
+                    disabled
                     className="FormRowInput"
                     id={this.props.id}
                     type={this.props.type}
