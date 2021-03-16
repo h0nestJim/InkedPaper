@@ -3,13 +3,15 @@ const router = express.Router()
 import { 
     addOrderItems,
     getOrderById,
-    updateOrderToPaid
+    updateOrderToPaid,
+    getMyOrders
 } from '../controllers/orderController.js'
 import {protect} from '../middleware/authMiddleware.js'
 
 //get all products from backend
 
 router.route('/').post(protect, addOrderItems)
+router.route('/myorders').get(protect, getMyOrders)
 
 router.route(('/:id')).get(protect, getOrderById)
 

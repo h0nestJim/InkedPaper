@@ -23,13 +23,6 @@ const HomeScreens = ({ location, history, match }) => {
 
         dispatch(listProducts(keyword))
 
-        /* const fetchProducts = async () => {
-             const { data } = await axios.get('/api/products')
-             setProducts(data)
-         }
- 
-         fetchProducts()
-         */
     }, [dispatch, keyword])
 
 
