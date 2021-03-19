@@ -4,16 +4,15 @@ import { Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-b
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
+import { getOrderDetails, deliverOrder } from '../actions/orderActions'
 
-import axios from 'axios'
 //stripe
 import { Elements } from "@stripe/react-stripe-js"
 import CreditCardForm from '../PaymentWidgets/CreditCardForm'
 import { loadStripe } from "@stripe/stripe-js"
-import { ORDER_PAY_RESET } from '../constants/orderConstants'
+import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstants'
 
-const OrderScreen = ({ match }) => {
+const OrderScreen = ({ match, history }) => {
 
     const orderId = match.params.id
     const [stipePromise, setStripePromise] = useState(() => loadStripe("pk_test_51IUavEFV3SCXvY9fubZHWbPtve3bWc9yFTuEM5Cx05OEblstUpwW67DwVEcYVMciTAFImsZeyshfX9MVQvGdftLQ00uES24w7o|"))
@@ -23,8 +22,13 @@ const OrderScreen = ({ match }) => {
     const orderDetails = useSelector((state) => state.orderDetails)
     const { order, loading, error } = orderDetails
 
-    const orderPay = useSelector((state) => state.orderPay)
-    const { loading: loadingPay, success: successPay } = orderPay
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
+
+
+
+    const orderDeliver = useSelector((state) => state.orderDeliver)
+    const { loading: loadingDeliver, success: successDeliver } = orderDeliver
 
     //calculate prices
     if (!loading) {
@@ -41,26 +45,29 @@ const OrderScreen = ({ match }) => {
 
 
 
-    const handleClick = async (e) => {
-
-    }
-
-
 
     useEffect(() => {
+
+        if (!userInfo) {
+            history.push('/login')
+        }
+
         setStripePromise()
 
-        if (!order || order._id !== orderId) {
+        if (!order || order._id !== orderId || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
+            dispatch({ type: ORDER_DELIVER_RESET })
             dispatch(getOrderDetails(orderId))
         }
 
 
 
-    }, [dispatch, order, orderId])
+    }, [dispatch, order, orderId, successDeliver, history])
 
 
-
+    const deliverHandler = () => {
+        dispatch(deliverOrder(order))
+    }
 
 
 
@@ -80,7 +87,17 @@ const OrderScreen = ({ match }) => {
                             <br></br><br></br>
                             {order.isDelivered ? <Message variant="success">Dispatched on: {order.deliveredAt}</Message> :
                                 <Message variant='danger'>Not Yet Dispatched!</Message>}
+
+
                         </ListGroup.Item>
+
+                        {loadingDeliver && <Loader />}
+                        {userInfo && userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+                            <ListGroupItem>
+                                <Button type="button" className="btn btn-block btn-primary" onClick={deliverHandler}>Mark as Dispatched</Button>
+                            </ListGroupItem>
+                        )}
+
 
                         <ListGroup.Item>
                             <h3>Review Items</h3>

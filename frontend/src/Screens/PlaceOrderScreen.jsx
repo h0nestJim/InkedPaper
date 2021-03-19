@@ -7,6 +7,7 @@ import Message from '../Components/Message'
 import FormContainer from '../Components/formContainer'
 import { createOrder } from '../actions/orderActions'
 
+
 const PlaceOrderScreen = ({ history }) => {
 
     const dispatch = useDispatch()
@@ -45,6 +46,8 @@ const PlaceOrderScreen = ({ history }) => {
             handlingPrice: cart.handling,
             totalPrice: cart.totalPrice
         }))
+
+
     }
 
 

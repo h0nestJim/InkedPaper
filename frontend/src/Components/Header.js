@@ -1,14 +1,15 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
 import logoMain from '../images/logo_main.png';
-import {useDispatch, useSelector} from 'react-redux'
+
 import {logout} from '../actions/userActions'
 import Search from './Search'
 import {Route} from 'react-router-dom'
 
 
-const Header = () => {
+const Header = ({history}) => {
 
     const dispatch = useDispatch()
 
@@ -17,7 +18,15 @@ const Header = () => {
 
     const logoutHandler = ()=>{
         dispatch(logout())
+        history.push('/')
     }
+
+    useEffect(()=>{
+        if(!userInfo){
+            dispatch(logout())
+            history.push('/')
+        }
+    }, [history])
 
     return (
         <header>
