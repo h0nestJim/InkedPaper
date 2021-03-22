@@ -13,6 +13,10 @@ const getProducts = asyncHandler(async (req, res) =>{
 
     }
 
+<<<<<<< HEAD
+    console.log("product request")
+=======
+>>>>>>> 25be678787811df9ac016781190324ecd4aef512
 
     const products = await Product.find({...keyword})
     res.json(products);
