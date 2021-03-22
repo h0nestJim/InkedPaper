@@ -24,7 +24,7 @@ const PlaceOrderScreen = ({ history }) => {
 
     cart.itemsPrice = addDecimals(cart.cartItems.reduce((acc, item) => acc + item.price * item.qty, 0))
     cart.shippingPrice = addDecimals(5)
-    cart.handling = addDecimals(Number((cart.itemsPrice * 0.0255).toFixed(2)))
+    cart.handling = addDecimals(Number((cart.itemsPrice * 0.1).toFixed(2)))
     cart.totalPrice = addDecimals((Number(cart.itemsPrice) + Number(cart.shippingPrice) + Number(cart.handling)))
 
     const orderCreate = useSelector(state => state.orderCreate)
@@ -34,7 +34,7 @@ const PlaceOrderScreen = ({ history }) => {
         if (success) {
             history.push(`/order/${order._id}`)
         }
-    }, [history, success])
+    }, [history, success, order])
 
     const placeOrderHandler = () => {
         dispatch(createOrder({

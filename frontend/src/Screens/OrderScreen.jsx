@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Row, Col, ListGroup, Image, Card, Button, ListGroupItem } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
@@ -15,7 +15,6 @@ import { ORDER_PAY_RESET, ORDER_DELIVER_RESET } from '../constants/orderConstant
 const OrderScreen = ({ match, history }) => {
 
     const orderId = match.params.id
-    const [stipePromise, setStripePromise] = useState(() => loadStripe("pk_test_51IUavEFV3SCXvY9fubZHWbPtve3bWc9yFTuEM5Cx05OEblstUpwW67DwVEcYVMciTAFImsZeyshfX9MVQvGdftLQ00uES24w7o|"))
 
     const dispatch = useDispatch()
 
@@ -52,7 +51,7 @@ const OrderScreen = ({ match, history }) => {
             history.push('/login')
         }
 
-        setStripePromise()
+
 
         if (!order || order._id !== orderId || successDeliver) {
             dispatch({ type: ORDER_PAY_RESET })
@@ -62,7 +61,7 @@ const OrderScreen = ({ match, history }) => {
 
 
 
-    }, [dispatch, order, orderId, successDeliver, history])
+    }, [dispatch, order, orderId, successDeliver, history, userInfo])
 
 
     const deliverHandler = () => {

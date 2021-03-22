@@ -1,8 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Carousel, Row, Col } from 'react-bootstrap'
-import banner from '../images/flashbanner.jpg'
-import banneralt from '../images/flashbanneralt.jpg'
+
 
 const LandingScreen = (location, history) => {
     return (
@@ -12,7 +11,7 @@ const LandingScreen = (location, history) => {
                 <Carousel.Item className="carouselMain min-vw-100">
                     <img
                         className="d-block w-100"
-                        src={banner}
+                        src={'/images/flashbanner.jpg'}
                         alt="First slide"
                     />
                     <Carousel.Caption className="home-caption rounded">
@@ -23,7 +22,7 @@ const LandingScreen = (location, history) => {
                 <Carousel.Item>
                     <img
                         className="d-block w-100"
-                        src={banneralt}
+                        src={'/images/flashbanneralt.jpg'}
                         alt="second slide"
                     />
 

@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
 
-const Artist = ({ artist }) => {
+const Artist = ({ key, artist }) => {
     return (
-        <Card className="my-3 p-3 rounded">
+        <Card key={artist.id} className="my-3 p-3 rounded">
 
             <Card.Img src={artist.image} />
 

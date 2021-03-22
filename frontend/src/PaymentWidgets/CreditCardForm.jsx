@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from 'react-redux'
-import { getOrderDetails, payOrder } from '../actions/orderActions'
-import { useHistory, Redirect, Link } from "react-router-dom";
+import { payOrder } from '../actions/orderActions'
+import { useHistory } from "react-router-dom";
 import {
     CardElement,
     useElements,
     useStripe,
-    Elements,
 } from "@stripe/react-stripe-js";
 import { Form, Modal, Button } from "react-bootstrap";
 import Field from "./Field";
@@ -74,7 +73,6 @@ export default function CreditCardForm(props, { match }) {
     const [success, setSuccess] = useState(false)
     const [cardComplete, setCardComplete] = useState(false);
     const [processing, setProcessing] = useState(false);
-    const [paymentMethod, setPaymentMethod] = useState('');
     const [price, setPrice] = useState(order.totalPrice);
     const [billingDetails, setBillingDetails] = useState({
         email: order.user.email,
@@ -89,7 +87,6 @@ export default function CreditCardForm(props, { match }) {
     const reset = () => {
         setError(null);
         setProcessing(false);
-        setPaymentMethod('');
         setPrice(0);
         setSuccess(false);
         setCardComplete(false);
@@ -277,7 +274,7 @@ export default function CreditCardForm(props, { match }) {
                 read-only
                 value={price}
                 onChange={(event) => {
-                    if (event.target.value != price) {
+                    if (event.target.value !== price) {
                         setPrice(price);
                     }
                     else {

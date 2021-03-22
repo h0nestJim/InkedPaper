@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap'
 
 const Search = ({ history }) => {
 
@@ -16,20 +16,29 @@ const Search = ({ history }) => {
     }
 
     return (
-        <Form onSubmit={submitHandler} inline className='py-2'>
-            <Form.Control type='text'
-                name='q'
-                onChange={(e) => setKeyword(e.target.value)}
-                placeholder="Search all flash..."
+        <Form onSubmit={submitHandler} className='py-2'>
+            <Row>
+                <Col sm={6} md={6}>
+                    <Form.Control type='text'
+                        name='q'
+                        onChange={(e) => setKeyword(e.target.value)}
+                        placeholder="Search all flash..."
+                        className='mx-4 py-2'
 
-                inline
-            ></Form.Control>
-            <Button
-                type='submit'
-                variant='outline-warning rounded'
-                className='px-3 mx-4'
-                inline
-            >Search Products</Button>
+                    ></Form.Control>
+                </Col>
+                <Col sm={6} md={6}>
+                    <Button
+                        type='submit'
+                        variant='outline-warning rounded'
+                        className='mx-4 py-2'>
+                        Search
+                    </Button>
+                </Col>
+
+            </Row>
+
+
         </Form>
     )
 }
