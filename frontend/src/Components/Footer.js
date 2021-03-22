@@ -11,7 +11,7 @@ const Footer = () => {
                 
                 <Row>
                     <Col className='text-center py-3'>
-                        &copy; 2021 Inked Paper | All artwork used with permission
+                        &copy; 2021 Inked Paper | All Artwork Subject to Permission
                     </Col>
                 </Row>
             </Container>

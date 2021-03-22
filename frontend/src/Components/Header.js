@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {LinkContainer} from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown} from 'react-bootstrap';
@@ -9,22 +9,27 @@ import Search from './Search'
 import {Route} from 'react-router-dom'
 
 
+
+
 const Header = ({history}) => {
 
     const dispatch = useDispatch()
 
     const userLogin = useSelector(state => state.userLogin)
     const {userInfo} = userLogin
+    
+
+    
 
     const logoutHandler = ()=>{
         dispatch(logout())
-        history.push('/')
+       
     }
 
     useEffect(()=>{
         if(!userInfo){
+           
             dispatch(logout())
-            history.push('/')
         }
     }, [history])
 
@@ -35,14 +40,11 @@ const Header = ({history}) => {
                     <Nav.Link><Navbar.Toggle aria-controls="basic-navbar-nav" /></Nav.Link>
 
                     <LinkContainer to="/">
-                    <Navbar.Brand ><img className='logo' src={logoMain} alt="logo" /></Navbar.Brand>
+                    <Navbar.Brand ><img className='logo' src={"images/logo_main.png"} alt="logo" /></Navbar.Brand>
                     </LinkContainer>
-                    
-
-                    
-
+          
                     <LinkContainer to="/cart">
-                    <Nav.Link> <span class="material-icons icon-dark">
+                    <Nav.Link> <span className="material-icons icon-dark">
                         shopping_cart
                         </span></Nav.Link>
                     </LinkContainer>

@@ -21,23 +21,25 @@ const ProfileScreen = ({ location, history }) => {
 
     const dispatch = useDispatch()
 
-    const userDetails = useSelector((state) => state.userDetails)
+    const userDetails = useSelector(state => state.userDetails)
     const { loading, error, user } = userDetails
 
-    const userLogin = useSelector((state) => state.userLogin)
+    const userLogin = useSelector(state => state.userLogin)
     const { userInfo } = userLogin
 
-    const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+    const userUpdateProfile = useSelector(state => state.userUpdateProfile)
     const { success } = userUpdateProfile
 
     const orderListMy = useSelector(state => state.orderListMy)
     const { orders, loading: loadingOrders, error: errorOrders } = orderListMy
 
-    console.log(orders)
+    if (!userInfo.name) {
+        history.push('/login')
+    }
 
     useEffect(() => {
         if (!userInfo) {
-
+            document.location.href = '/login'
             history.push('/login')
         }
         else {
