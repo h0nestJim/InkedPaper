@@ -1,18 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Carousel, Row, Col } from 'react-bootstrap'
-import { useHistory } from 'react-router-dom'
+import FinishCheckout from '../Components/FinishCheckout'
+import { useSelector } from 'react-redux'
 
 const LandingScreen = (location, history) => {
 
-    let history1 = useHistory()
-
+    const checkoutMsg = useSelector(state => state.cart.cartItems)
 
 
 
     return (
         <div>
-
+            {checkoutMsg.length > 0 && <FinishCheckout />}
             <Carousel className="carouselMain py-0">
                 <Carousel.Item className="carouselMain min-vw-100">
                     <img
