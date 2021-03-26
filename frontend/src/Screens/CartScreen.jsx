@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, Redirect } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroupItem, Image, Form, Button, ListGroup, Card } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
@@ -16,8 +16,8 @@ const CartScreen = ({ match, location, history }) => {
     const dispatch = useDispatch()
 
     const cart = useSelector(state => state.cart)
-
-
+    //const userInfo = useSelector(state => state.userLogin.userInfo)
+    //console.log(!localStorage.userInfo)
 
     useEffect(() => {
         if (productId) {
@@ -30,7 +30,13 @@ const CartScreen = ({ match, location, history }) => {
     }
 
     const checkOutHandler = () => {
-        history.push('/login?redirect=shipping')
+        if (!localStorage.userInfo) {
+            history.push('/login')
+            console.log("stirng")
+        }
+        else {
+            history.push('/login?redirect=shipping')
+        }
     }
 
     return (
