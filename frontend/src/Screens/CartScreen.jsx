@@ -43,17 +43,17 @@ const CartScreen = ({ match, location, history }) => {
                         {cart.cartItems.map(item => (
                             <ListGroupItem key={item.product}>
                                 <Row>
-                                    <Col md={2}>
+                                    <Col xs={12} md={2}>
                                         <Image src={item.image} alt={item.name} fluid rounded />
                                     </Col>
-                                    <Col md={3}>
+                                    <Col xs={12} md={4}>
                                         <h3><Link to={`/product/${item.product}`}>{item.name}</Link></h3>
                                     </Col>
-                                    <Col md={2}>
+                                    <Col xs={12} md={2}>
                                         <p>£{item.price}</p>
                                     </Col>
-                                    <Col md={2}>
-                                        <Form.Control as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
+                                    <Col xs={12} md={2}>
+                                        <Form.Control className="mt-3" as='select' value={item.qty} onChange={(e) => dispatch(addToCart(item.product, Number(e.target.value)))}>
                                             {
                                                 [...Array(item.stock).keys()].map(x => (
                                                     <option key={x + 1} value={x + 1}> {x + 1}</option>
@@ -61,10 +61,10 @@ const CartScreen = ({ match, location, history }) => {
                                             }
                                         </Form.Control>
                                     </Col>
-                                    <Col md={2}>
-                                        <Button type="button" variant='light' onClick={
+                                    <Col xs={12} md={2}>
+                                        <Button type="button" variant='outline-warning' className="btn btn-block rounded mt-3 p-1" onClick={
                                             () => removeFromCartHandler(item.product)
-                                        }><span class="material-icons icon-dark">
+                                        }><span class="material-icons icon-trash">
                                                 delete
                                                 </span></Button>
                                     </Col>

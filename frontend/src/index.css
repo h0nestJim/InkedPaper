@@ -20,6 +20,10 @@ footer{
     background-color: #292b2c;
     color:white;
     font-family: 'Montserrat', sans-serif;
+    width:100%;
+    bottom:0;
+    left:0;
+    margin-top: 10px;
 }
 
 h1{
@@ -65,7 +69,9 @@ font-size:24px;
 color:#F58500;
 }
 
-
+.icon-trash{
+color:#F58500;
+}
 
 .carousel-h{
     color:#292b2c;
