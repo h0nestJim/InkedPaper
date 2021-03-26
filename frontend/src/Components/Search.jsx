@@ -18,7 +18,7 @@ const Search = ({ history }) => {
     return (
         <Form onSubmit={submitHandler} className='py-2'>
             <Row>
-                <Col sm={6} md={6}>
+                <Col sm={12} md={8}>
                     <Form.Control type='text'
                         name='q'
                         onChange={(e) => setKeyword(e.target.value)}
@@ -27,11 +27,11 @@ const Search = ({ history }) => {
 
                     ></Form.Control>
                 </Col>
-                <Col sm={6} md={6}>
+                <Col sm={12} md={4}>
                     <Button
                         type='submit'
                         variant='outline-warning rounded'
-                        className='mx-4 py-2'>
+                        className='mx-4 py-2 btn btn-block'>
                         Search
                     </Button>
                 </Col>
