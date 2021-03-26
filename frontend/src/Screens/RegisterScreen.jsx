@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col, FormControl } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { register } from '../actions/userActions'
+import { register, logout } from '../actions/userActions'
 import FormContainer from '../Components/formContainer'
 
 
@@ -23,6 +23,8 @@ const RegisterScreen = ({ location, history }) => {
 
     const redirect = location.search ? location.search.split('=')[1] : '/'
 
+
+
     useEffect(() => {
         if (userInfo) {
             history.push(redirect)
@@ -36,6 +38,12 @@ const RegisterScreen = ({ location, history }) => {
         } else {
             dispatch(register(name, email, password))
         }
+    }
+
+    const clearuserData = () => {
+        localStorage.removeItem('userInfo')
+        dispatch(logout())
+        history.push('/login')
     }
 
     return (
@@ -84,17 +92,27 @@ const RegisterScreen = ({ location, history }) => {
                 </Form.Group>
                 <Button
                     type='submit'
-                    variant='primary'>Register</Button>
+                    variant='warning'
+                    className="btn btn-block rounded"
+                >Register</Button>
 
 
             </Form>
-            <Row className="py-3">
-                <Col>
-                    Have an account? <Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Sign In!</Link>
+            <Row className="py-3 ">
+                <Col className="align-items-center">
+                    <h4 className="text-center">Have an account?</h4>
+
 
                 </Col>
-
             </Row>
+            <Row>
+                <Col>
+                    <Button onClick={clearuserData} className="btn btn-block" variant="outline-warning rounded">Sign In</Button>
+                    {//<Link to={redirect ? `/login?redirect=${redirect}` : '/login'}>Sign In!</Link>
+                    }
+                </Col>
+            </Row>
+
 
         </FormContainer>
     )

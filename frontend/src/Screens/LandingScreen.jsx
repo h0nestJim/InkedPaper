@@ -1,9 +1,15 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Carousel, Row, Col } from 'react-bootstrap'
-
+import { useHistory } from 'react-router-dom'
 
 const LandingScreen = (location, history) => {
+
+    let history1 = useHistory()
+
+
+
+
     return (
         <div>
 

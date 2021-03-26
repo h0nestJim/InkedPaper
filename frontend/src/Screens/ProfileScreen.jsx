@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Form, Button, Row, Col, FormControl, Table } from 'react-bootstrap'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { getUserDetails, updateUserProfile } from '../actions/userActions'
+import { getUserDetails, updateUserProfile, logout } from '../actions/userActions'
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants'
 import { listMyOrders } from '../actions/orderActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
+
 
 
 
@@ -33,28 +34,26 @@ const ProfileScreen = ({ location, history }) => {
     const orderListMy = useSelector(state => state.orderListMy)
     const { orders, loading: loadingOrders, error: errorOrders } = orderListMy
 
-    if (!userInfo.name) {
-        history.push('/login')
-    }
+
 
     useEffect(() => {
-        if (!userInfo) {
-            document.location.href = '/login'
+        if (error) {
+            console.log("help")
+            dispatch(logout())
             history.push('/login')
         }
-        else {
 
-            if (!user || !user.name || success) {
-                dispatch({ type: USER_UPDATE_PROFILE_RESET })
-                dispatch(getUserDetails('profile'))
-                dispatch(listMyOrders())
-            } else {
-                setName(user.name)
-                setEmail(user.email)
-            }
+        if (!user || !user.name || success) {
+            dispatch({ type: USER_UPDATE_PROFILE_RESET })
+            dispatch(getUserDetails('profile'))
+            dispatch(listMyOrders())
+        } else {
+            setName(user.name)
+            setEmail(user.email)
         }
 
-    }, [dispatch, history, userInfo, user, success])
+
+    }, [dispatch, history, userInfo, user, success, error])
 
     const submitHandler = (e) => {
         e.preventDefault()
@@ -73,7 +72,7 @@ const ProfileScreen = ({ location, history }) => {
         <Row>
             <Col md={3}>
                 <h2 className='py-3'>Edit Details</h2>
-                {error && <h3 className="message-alert">{error}</h3>}
+                {error && <Message variant='danger'>{errorOrders}</Message>}
                 {message && <h3 className="message-alert">{message}</h3>}
                 {success && <h3 className="message-alert-success">Profile Updated Successfully!</h3>}
                 {loading && <Loader />}

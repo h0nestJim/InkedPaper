@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link, Redirect } from 'react-router-dom'
+import { Link, Redirect, } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroupItem, Image, Form, Button, ListGroup, Card } from 'react-bootstrap'
 import { addToCart, removeFromCart } from '../actions/cartActions'
@@ -17,7 +17,8 @@ const CartScreen = ({ match, location, history }) => {
 
     const cart = useSelector(state => state.cart)
     //const userInfo = useSelector(state => state.userLogin.userInfo)
-    //console.log(!localStorage.userInfo)
+    const data = !localStorage.userInfo
+    console.log(data)
 
     useEffect(() => {
         if (productId) {
@@ -31,8 +32,8 @@ const CartScreen = ({ match, location, history }) => {
 
     const checkOutHandler = () => {
         if (!localStorage.userInfo) {
-            history.push('/login')
-            console.log("stirng")
+            history.push('/register')
+
         }
         else {
             history.push('/login?redirect=shipping')
@@ -105,6 +106,7 @@ const CartScreen = ({ match, location, history }) => {
                                 disabled={cart.cartItems.length === 0}
                                 onClick={checkOutHandler}
                             >Proceed to Checkout!</Button>
+
 
                         </ListGroupItem>
                     </ListGroup>
