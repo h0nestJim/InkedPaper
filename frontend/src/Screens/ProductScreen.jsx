@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem, Form } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { listProductDetails } from '../actions/productActions'
+import Loader from '../Components/Loader'
 //replaced by backend
 //import products from '../products'
 //replaced by redux
@@ -31,7 +32,7 @@ const ProductScreen = ({ history, match }) => {
     return (
         <div>
             <Link className='btn btn-outline-warning my-3 rounded' to='/store'>Back to Shop</Link>
-            {loading ? <h2>Loading...</h2> : error ? <h3>{error}</h3> : (
+            {loading ? <Loader /> : error ? <h3>{error}</h3> : (
                 <Row>
                     <Col md={6}>
                         <Image src={product.image} alt={product.name} fluid></Image>

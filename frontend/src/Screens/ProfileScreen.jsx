@@ -76,7 +76,7 @@ const ProfileScreen = ({ location, history }) => {
                 {error && <h3 className="message-alert">{error}</h3>}
                 {message && <h3 className="message-alert">{message}</h3>}
                 {success && <h3 className="message-alert-success">Profile Updated Successfully!</h3>}
-                {loading && <h3>Registering...</h3>}
+                {loading && <Loader />}
                 <Form onSubmit={submitHandler}>
                     <Form.Group controlId='name'>
                         <Form.Label>Update Account Name</Form.Label>
