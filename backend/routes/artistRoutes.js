@@ -1,7 +1,7 @@
 import express from 'express'
 import asyncHandler from 'express-async-handler'
 const router = express.Router()
-import Artist from '../models/artistModel.js'
+import Artist from '../models/ArtistModel.js'
 import Product from '../models/ProductModel.js'
 
 
