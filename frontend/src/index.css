@@ -1,4 +1,4 @@
-
+html, body {width: auto!important; overflow-x: hidden!important} 
 
 main{
     min-height: 80vh;
@@ -7,6 +7,13 @@ main{
 .logo{
     max-height: 20vh;
     max-width:200px;
+}
+
+.form-search{
+    width:100%;
+    padding:0;
+    display:block;
+    margin-top: 2%;
 }
 
 footer{
