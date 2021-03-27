@@ -6,7 +6,9 @@ import CheckoutProgressBar from '../Components/CheckoutProgressBar'
 import Message from '../Components/Message'
 import FormContainer from '../Components/formContainer'
 import { createOrder } from '../actions/orderActions'
-
+import { ORDER_CREATE_RESET } from '../constants/orderConstants'
+import { USER_DETAILS_RESET } from '../constants/userConstants'
+import { CART_CLEAR_ITEMS } from '../constants/cartConstants'
 
 const PlaceOrderScreen = ({ history }) => {
 
@@ -33,8 +35,11 @@ const PlaceOrderScreen = ({ history }) => {
     useEffect(() => {
         if (success) {
             history.push(`/order/${order._id}`)
+            dispatch({ type: USER_DETAILS_RESET })
+            dispatch({ type: ORDER_CREATE_RESET })
+            dispatch({ type: CART_CLEAR_ITEMS })
         }
-    }, [history, success, order])
+    }, [history, dispatch, success, order])
 
     const placeOrderHandler = () => {
         dispatch(createOrder({
@@ -78,7 +83,7 @@ const PlaceOrderScreen = ({ history }) => {
 
                         <ListGroup.Item>
                             <h3>Review Items</h3>
-                            {cart.cartItems.length === 0 ? <Message>Your cart is empty!</Message> : (
+                            {cart.cartItems.length === 0 ? <Message><p>Your cart is empty!</p><p>If you have hit 'Back' check your orders in 'My Account'!</p></Message> : (
                                 <ListGroup variant='flush'>
                                     {cart.cartItems.map((item, index) => (
                                         <ListGroup.Item key={index}>
