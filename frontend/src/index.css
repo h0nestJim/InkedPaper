@@ -24,32 +24,38 @@ footer{
     bottom:0;
     left:0;
     margin-top: 10px;
+    font-display:swap;
 }
 
 h1{
     font-family: 'Miltonian Tattoo', cursive;
     text-align:center;
+    font-display:swap;
 }
 
 h2{
     font-family: 'Montserrat', sans-serif;
     color:#292b2c;
+    font-display:swap;
 }
 
 h3{
     font-family: 'Montserrat', sans-serif;
     color:#292b2c;
+    font-display:swap;
 }
 
 .nav-link{
   font-family: 'Montserrat', sans-serif;
   color: white;
+  font-display:swap;
 }
 
 .progress-link{
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   color: #F58500;
+  font-display:swap;
 }
 
 .checkout-bar{
@@ -73,21 +79,8 @@ color:#F58500;
 color:#F58500;
 }
 
-.carousel-h{
-    color:#292b2c;
-    font-family: 'Miltonian Tattoo', cursive;
-    text-align:center;
-    font-size:large;
-    padding: 3;
-    margin-top:3;
-}
 
-.carousel-p{
-    
-    color:#292b2c;
-    font-family: 'Montserrat', sans-serif;
-    font-size: small;
-}
+
 
 .home-caption{
     background-color:white;
@@ -103,13 +96,16 @@ color:#F58500;
 p{
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    font-display:swap;
 }
 
+/*
 .large-image{
     width:80vw;
     display:block;
     margin:auto;
 }
+*/
 
 .btn-center{
    
@@ -121,12 +117,14 @@ p{
     font-family: 'Montserrat', sans-serif;
     color:red;
     font-weight:bold;
+    font-display:swap;
 }
 
 .message-alert-success{
     font-family: 'Montserrat', sans-serif;
     color:green;
     font-weight:bold;
+    font-display:swap;
 }
 
 .banner-container{
@@ -146,6 +144,7 @@ p{
    position:absolute;
   top: 50%;
   left: 50%;
+  
   transform: translate(-50%, -50%);
     background: rgb(204, 204, 204); /* Fallback for older browsers without RGBA-support */
     background: rgba(255, 255, 255, 0.85);

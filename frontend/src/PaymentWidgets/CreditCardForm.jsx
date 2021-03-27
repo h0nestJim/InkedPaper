@@ -9,6 +9,8 @@ import {
 } from "@stripe/react-stripe-js";
 import { Form, Modal, Button } from "react-bootstrap";
 import Field from "./Field";
+import Message from '../Components/Message'
+
 //css provided by stripe to format elements
 
 const axios = require("axios");
@@ -21,9 +23,9 @@ const CARD_OPTIONS = {
     iconStyle: "solid",
     style: {
         base: {
-            fontWeight: 500,
+            fontWeight: 700,
             fontFamily: "Roboto, Open Sans, Segoe UI, sans-serif",
-            fontSize: "18px",
+            fontSize: "22px",
             color: "#424770",
             fontSmoothing: "antialiased",
             ":-webkit-autofill": {
@@ -36,6 +38,7 @@ const CARD_OPTIONS = {
         invalid: {
             iconColor: "red",
             color: "red",
+            backgroundColor: "#ff8080"
         },
     },
 };
@@ -82,6 +85,8 @@ export default function CreditCardForm(props, { match }) {
             line2: shippingAddress.postcode,
         }
     });
+
+
 
     //resets state on completion
     const reset = () => {
@@ -353,16 +358,20 @@ export default function CreditCardForm(props, { match }) {
 
             {/* credit card field and submit button */}
             <fieldset className="FormGroup py-3">
+                <Message variant="primary">Enter Card Payment Details Below</Message>
                 {/* card */}
+
                 <CardField
                     onChange={(event) => {
-                        setError(event.error);
+
                         setCardComplete(event.complete);
-                    }}
+                    }
+                    }
+
                 />
 
             </fieldset>
-            {/* submit */}
+
             <SubmitButton
                 type="submit"
                 processing={processing}

@@ -9,13 +9,7 @@ import { useHistory } from "react-router-dom";
 import { loadStripe } from "@stripe/stripe-js";
 
 //config of fonts for the stripe prebuilt elements
-const ELEMENTS_OPTIONS = {
-    fonts: [
-        {
-            cssSrc: "https://fonts.googleapis.com/css?family=Roboto",
-        },
-    ],
-};
+
 
 //component
 export default function PaymentComponent(props) {
@@ -50,7 +44,6 @@ export default function PaymentComponent(props) {
                 {/* Elements Wrapper and checkout form component */}
                 <Elements
                     stripe={loadStripe(props.keys.stripe)}
-                    options={ELEMENTS_OPTIONS}
                 >
                     <CreditCardForm />
                 </Elements>

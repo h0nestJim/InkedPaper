@@ -38,7 +38,7 @@ const Header = ({history}) => {
                     <Nav.Link><Navbar.Toggle aria-controls="basic-navbar-nav" /></Nav.Link>
 
                     <LinkContainer to="/">
-                    <Navbar.Brand ><img className='logo' src={"images/logo_main.png"} alt="logo" /></Navbar.Brand>
+                    <Navbar.Brand ><img className='logo' src={"/images/logo_main.png"} alt="logo" /></Navbar.Brand>
                     </LinkContainer>
           
                     <LinkContainer to="/cart">

@@ -135,14 +135,15 @@ const ProfileScreen = ({ location, history }) => {
                                 <th>Total</th>
                                 <th>Paid</th>
                                 <th>Dispatched</th>
+                                <th>Review Order</th>
                             </tr>
                         </thead>
                         <tbody>
                             {orders.map((order) => (
                                 <tr key={order._id}>
-                                    <td>{order._id}</td>
+                                    <td>{(order._id).slice(-6)}</td>
                                     <td>{order.createdAt.substring(0, 10)}</td>
-                                    <td>{order.totalPrice}</td>
+                                    <td><b>£{order.totalPrice}</b></td>
                                     <td>{order.isPaid ? order.paidAt.substring(0, 10) : <span class="material-icons" style={{ color: "red" }}>
                                         warning
                                         </span>}</td>
@@ -151,7 +152,7 @@ const ProfileScreen = ({ location, history }) => {
                                         </span>}</td>
                                     <td>
                                         <LinkContainer to={`/order/${order._id}`}>
-                                            <Button variant='light'>Details</Button>
+                                            <Button variant='primary' className="rounded">Details</Button>
                                         </LinkContainer>
                                     </td>
                                 </tr>

@@ -13,7 +13,7 @@ const FinishCheckout = () => {
                 </Col>
                 <Col xs={6} sm={3}>
                     <Link to='/cart'>
-                        <Button variant="success" className="btn btn-block rounded my-3">Finish Checking Out!</Button>
+                        <Button variant="success" className="btn btn-block rounded my-3">Finish Checkout!</Button>
                     </Link>
                 </Col>
                 <Col xs={6} sm={3}>
